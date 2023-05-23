@@ -2,8 +2,8 @@ package myNewPackage;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
-//import javax.annotation.security.PermitAll;
-//import javax.annotation.security.RolesAllowed;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,7 +20,7 @@ import javax.ws.rs.core.MediaType;
 @Stateless
 @Path("/UserController")
 
-//@RolesAllowed({"RestaurantOwner, Customer,Runner"})
+@RolesAllowed({"RestaurantOwner, Customer,Runner"})
 
 public class userController {
 	
@@ -28,7 +28,7 @@ public class userController {
 	private EntityManager em;
 	//@PermitAll
 	     
-	//@RolesAllowed("RestaurantOwner")
+	@RolesAllowed("RestaurantOwner")
     @POST
     @Path("/createRes")
     public String CreateRestaurant(@QueryParam("name") String name, @QueryParam("ownerid") int ownerid)
@@ -42,7 +42,7 @@ public class userController {
     }
 	 
 	
-  //@RolesAllowed("RestaurantOwner")
+  @RolesAllowed("RestaurantOwner")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @POST
@@ -83,7 +83,7 @@ public class userController {
     
     
      @Produces(MediaType.APPLICATION_JSON)
-    //@RolesAllowed("RestaurantOwner")
+    @RolesAllowed("RestaurantOwner")
       @POST
       @Path("/AddMeal")
       public String AddMeal(@QueryParam("restaurantid")int restaurantid,@QueryParam("name") String name,@QueryParam("newPrice") int newPrice)
@@ -117,7 +117,7 @@ public class userController {
      
 	
     @Produces(MediaType.APPLICATION_JSON)
-	//@RolesAllowed("RestaurantOwner")
+	@RolesAllowed("RestaurantOwner")
     @PUT
     @Path("/editPrice")
     public String changeMealPrice(@QueryParam("restaurantid")int restaurantid ,@QueryParam("name") String name ,@QueryParam("newPrice") int newPrice)
@@ -151,7 +151,7 @@ public class userController {
 	
 	
     @Produces(MediaType.APPLICATION_JSON)
-	//@RolesAllowed("RestaurantOwner")
+	@RolesAllowed("RestaurantOwner")
 	@GET
 	@Path("/getResDetails")
 	public String getRestaurantDetails(@QueryParam("restaurantid")int restaurantid)
@@ -183,7 +183,7 @@ public class userController {
 
 	
     @Produces(MediaType.APPLICATION_JSON)
-	//@RolesAllowed("Runner")
+	@RolesAllowed("Runner")
     @PUT
     @Path("/CancelOrder")
     public String CancelOrder(@QueryParam("orderid") int orderid)
@@ -218,7 +218,7 @@ public class userController {
 
     
     
-	//@RolesAllowed("RestaurantOwner")
+	@RolesAllowed("RestaurantOwner")
     @Produces(MediaType.APPLICATION_JSON)
     @POST
     @Path("/createResReport")
@@ -272,7 +272,7 @@ public class userController {
         }
     }
 	
-  //@RolesAllowed("Customer")
+  @RolesAllowed("Customer")
     @Produces(MediaType.APPLICATION_JSON)
     @POST
     @Path("/createOrder")
@@ -334,7 +334,7 @@ public class userController {
 	
 	
     @Path("/editOrder")
-    //@RolesAllowed("Customer")
+    @RolesAllowed("Customer")
     @Produces(MediaType.APPLICATION_JSON)
     @PUT
     public ArrayList<String> editOrder(@QueryParam("orderid")int orderid,@QueryParam("name") String name)
@@ -391,7 +391,7 @@ public class userController {
 	
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    //@RolesAllowed("Customer")
+    @RolesAllowed("Customer")
     @GET
     @Path("/getRests")
     public List<String> listRestaurants() 
@@ -413,7 +413,7 @@ public class userController {
 	
 	
 	@Produces(MediaType.APPLICATION_JSON)
-	//@RolesAllowed("Runner")
+	@RolesAllowed("Runner")
     @PUT
     @Path("/changeStatus")
     public String changeStatus(@QueryParam("runnerid")int runnerid ,@QueryParam("orderid") int orderid)
@@ -443,7 +443,7 @@ public class userController {
         
     }
 
-	//@RolesAllowed("Runner")
+	@RolesAllowed("Runner")
     @GET
     @Path("/numOfTrips")
 	public int getCompletedTrips(@QueryParam("runnerid") int runnerid)
@@ -462,7 +462,7 @@ public class userController {
 	}
 
     
-    //@RolesAllowed("Runner")
+    @RolesAllowed("Runner")
     @Produces(MediaType.APPLICATION_JSON)
     @GET
     @Path("/ListRunners")
@@ -487,7 +487,7 @@ public class userController {
     }
     
     	 
-	//@RolesAllowed("Runner")
+	@RolesAllowed("Runner")
     @Produces(MediaType.APPLICATION_JSON)
     @POST
     @Path("/createrunner")
