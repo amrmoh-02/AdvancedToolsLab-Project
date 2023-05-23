@@ -26,7 +26,7 @@ public class userController {
 	
 	@PersistenceContext 
 	private EntityManager em;
-	//@PermitAll
+	@PermitAll
 	     
 	@RolesAllowed("RestaurantOwner")
     @POST
